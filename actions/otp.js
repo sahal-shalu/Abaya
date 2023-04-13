@@ -9,7 +9,7 @@ module.exports = function SendOtp(email,otp){
                     secure: true,
                     auth: {
                       user: "abayastore365@gmail.com",
-                      pass: "htqeicdqdfshgrae",
+                      pass: process.env.PASSWORD,
                     },
                   });
 

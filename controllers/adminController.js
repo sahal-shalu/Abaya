@@ -16,7 +16,7 @@ adminLogin:(req,res)=>{
     if(req.session.admin){
         res.redirect("/admin/")
     }else{
-        res.render('adminLogin')
+        res.render('adminLogin', {err:false})
     }
 },
 adminHome:async (req, res) => {
@@ -117,11 +117,11 @@ postAdminlogin: async (req, res) => {
           res.redirect("/admin/");
         } else {
           
-          res.render("adminLogin", { err: "Incorrect Password" });
+          res.render("adminLogin", { err:true,  message:"Incorrect Password" });
         }
       } else {
         
-        res.render("adminLogin", { error: "Please Enter all fields" });
+        res.render("adminLogin", { err:true, message:"Please Enter all fields" });
       }
     } catch(err) {
       console.log("ful err");

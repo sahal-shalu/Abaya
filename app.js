@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const ejs=require('ejs')
 const session = require('express-session')
@@ -6,6 +7,7 @@ const morgan = require("morgan")
 
 const userRouter = require('./routers/userRouter')
 const adminRouter = require('./routers/adminRouters')
+
 
 
 const app= express();

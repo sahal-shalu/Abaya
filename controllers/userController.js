@@ -41,7 +41,7 @@ module.exports = {
       if (req.session.user) {
         res.redirect('/')
     } else {
-        res.render('userLogin')
+        res.render('userLogin', {err:false})
     }
     },
     userSignup:(req,res)=>{
@@ -73,7 +73,7 @@ module.exports = {
                 console.log(randomOtp)
               sendOtp(req.body.email, randomOtp)
                 .then(() => {
-                  return res.render("otp", { user: req.body });
+                  return res.render("otp", {error:false, user: req.body });
                 })
                 .catch((err) => {
                   return res.render("userSignup", {
@@ -89,7 +89,7 @@ module.exports = {
         }
       },
       getOtp:(req,res)=>{
-        res.render('otp')
+        res.render('otp', {error:false})
       },
       postOtp: (req, res) => {
         const { name, email, password, mobile } = req.body;
@@ -108,6 +108,7 @@ module.exports = {
           
         } else {
           res.render("otp", {
+            user:{name, email, password, mobile},
             error: true,
             otpmessage: "Invalid OTP",
             ...req.body,
@@ -120,10 +121,9 @@ module.exports = {
           const { email, password } = req.body;
     
           let user = await userModel.findOne({ email });
-    
           if (user) {
             if (user.status == "block") {
-              res.render("userLogin", { ban: "Your account is banned" });
+              res.render("userLogin", { err:true, message: "Your account is banned" });
             } else {
               if (email == user.email && password == user.password) {
                 req.session.user = {
@@ -133,12 +133,12 @@ module.exports = {
                 res.redirect("/");
               } else {
                 console.log("password err")
-                res.render("userLogin", { err:"Incorrect password" });
+                res.render("userLogin", { err:true, message:"Incorrect password" });
               }
             }
           } else {
-            console.log(" no user")
-            res.render("userLogin", { error: true });
+            console.log("no user")
+            res.render("userLogin", { err: true, message:"No user found" });
           }
         } catch (err) {
           res.render('404')
