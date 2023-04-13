@@ -1,0 +1,129 @@
+<%- include('userHead') %>
+
+<body style="background-color: rgba(0, 0, 0, 0.137)">
+  <!--::header part start::-->
+  <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/">AbayaStore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+      </button>
+  
+      <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item active"><a href="/shop" class="nav-link">Shop</a></li>
+        
+        <li class="nav-item active"><a href="/profile" class="nav-link"><i class="ri-user-follow-line"></i></a></li>
+
+        
+        <li class="nav-item active"><a href="/whishlist" class="nav-link"><i class="ri-heart-line"></i></a></li>
+        <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+  
+      </ul>
+      </div>
+    </div>
+    </nav>
+  <% if(empty) {%>
+  <div class="container-fluid mt-100">
+    <div class="row">
+      <div class="col-md-12">
+        <div style="margin-top: 100px" class="card-body cart">
+          <div class="col-sm-12 empty-cart-cls text-center">
+            <img
+              src="https://i.imgur.com/dCdflKN.png"
+              width="130"
+              height="130"
+              class="img-fluid mb-4 mr-3"
+            />
+            <h3><strong>You Ordered nothing</strong></h3>
+            <h4>order something to make you happy</h4>
+            <a
+              href="/shop"
+              class="btn btn-primary cart-btn-transform m-3"
+              data-abc="true"
+              >continue shopping</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%} else{ %>
+  <div style="margin-top: 5px; display: flex; justify-content: center">
+    <h1
+      style="
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+      "
+    >
+      Your Orders
+    </h1>
+  </div>
+
+  <div class="container">
+    <table class="table mt-5 table-hover" id="myTable">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+
+          <th scope="col">Product Name</th>
+          <th scope="col">status</th>
+          <th scope="col">Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% order.forEach((item,index)=>{ %>
+        <tr>
+          <th scope="row"><%=index +1%></th>
+
+          <td><%=item.orderItems.name %></td>
+          <td><%=item.status %></td>
+
+          <td>
+            <img
+              style="width: 50px; height: 50px"
+              src="<%= item.orderItems.mainImage.url%>"
+              alt=""
+            />
+          </td>
+
+          <td>
+            <a href="/view-order/<%=item._id %>" class="btn btn-primary"
+              >View</a
+            >
+          </td>
+        </tr>
+
+        <%} ) %>
+      </tbody>
+    </table>
+  </div>
+
+  <% }%>
+
+  <script src="/assestsmalefashion/js/jquery-3.3.1.min.js"></script>
+  <script src="/assestsmalefashion/js/bootstrap.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.nice-select.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.nicescroll.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.magnific-popup.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.countdown.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.slicknav.js"></script>
+  <script src="/assestsmalefashion/js/mixitup.min.js"></script>
+  <script src="/assestsmalefashion/js/owl.carousel.min.js"></script>
+  <script src="/assestsmalefashion/js/main.js"></script>
+
+  <script src="/assetsuser/js/slick.min.js"></script>
+  <script src="/assetsuser/js/jquery.counterup.min.js"></script>
+  <script src="/assetsuser/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/assetsuser/js/custom.js"></script>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+</body>

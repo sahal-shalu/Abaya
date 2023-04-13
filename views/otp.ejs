@@ -1,0 +1,75 @@
+
+<%- include('userHead') %>
+   <!-- otp CSS -->
+   <link rel="stylesheet" href="/assetsuser/css/otp.css" />
+   <link rel="stylesheet" href="/assetsuser/css/whishlist.css" />
+
+<body style="background-color: rgb(22, 22, 22) ">
+
+      <form action="/otp" method="post">
+        <div style="display: flex;justify-content: center;align-items: center;height:100vh;width:100vw;">
+
+          
+
+          <div
+          style="background-color: rgb(90, 90, 90)"
+          class="card p-2 text-center"
+        >
+          <h6>Please enter the otp</h6>
+          <div>
+            <span style="color: rgb(0, 0, 0)"
+              >A otp has been sent to your email
+            </span>
+          </div>
+          <input
+            type="text"
+            name="email"
+            style="height: 0px; visibility: hidden"
+            value="<%=user.email %>"
+          />
+          <input
+            type="text"
+            name="mobile"
+            style="height: 0px; visibility: hidden"
+            value="<%=user.mobile %>"
+          />
+          <input
+            type="text"
+            name="password"
+            style="height: 0px; visibility: hidden"
+            value="<%=user.password %>"
+          />
+          <input
+            type="text"
+            name="name"
+            style="height: 0px; visibility: hidden"
+            value="<%=user.name %>"
+            />
+            <div
+            id="otp"
+            class="inputs d-flex flex-row justify-content-center mt-2"
+            >
+            <input
+            class="m-2 text-center form-control rounded"
+            style="width: 150px"
+            placeholder="OTP"
+            name="otp"
+              type="text"
+              maxlength="4"
+              required
+            />
+          </div>
+          <div class="mt-4">
+            <button class="btn btn-danger px-4 validate" type="submit">
+              submit
+            </button>
+          </div>
+        </div>
+      </div>
+      </form>
+  
+
+  
+</body>
+
+<%- include('footer') %>

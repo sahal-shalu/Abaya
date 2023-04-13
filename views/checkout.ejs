@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- belle/cart.html   11 Nov 2019 12:47:01 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>AbayaStore</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="/assets/css/plugins.css">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/responsive.css">
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body class="page-template belle">
+<div class="pageWrapper">
+	<!--Search Form Drawer-->
+	<div class="search">
+        <div class="search__form">
+            <form class="search-bar__form" action="#">
+                <button class="go-btn search__button" type="submit"><i class="icon anm anm-search-l"></i></button>
+                <input class="search__input" type="search" name="q" value="" placeholder="Search entire store..." aria-label="Search" autocomplete="off">
+            </form>
+            <button type="button" class="search-trigger close-btn"><i class="icon anm anm-times-l"></i></button>
+        </div>
+    </div>
+    <!--End Search Form Drawer-->
+    
+   
+    <!--End Header-->
+    <!--Mobile Menu-->
+    <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">AbayaStore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+        </button>
+    
+        <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="/shop" class="nav-link">Shop</a></li>
+          
+          <li class="nav-item active"><a href="/profile" class="nav-link"><i class="ri-user-follow-line"></i></a></li>
+  
+          
+          <li class="nav-item active"><a href="/whishlist" class="nav-link"><i class="ri-heart-line"></i></a></li>
+          <li class="nav-item active"><a href="/cart" class="nav-link"> <i class="ri-shopping-cart-fill"></i></a></li>
+    
+        </ul>
+        </div>
+      </div>
+      </nav>
+    <!--End Mobile Menu-->
+    
+    <!--Body Content-->
+    <div id="page-content" >
+    	
+        
+        <div class="container">
+        	<div class="row">
+
+            <% if(typeof wallet == 'undefined'){ %>
+
+                <% if (typeof couponPrice == "undefined") { %>
+
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="customer-box returning-customer">
+                        <h3><i class="icon anm anm-user-al"></i> Have an Wallet ? <a href="#customer-login" id="customer" class="text-white text-decoration-underline" data-toggle="collapse">Click here to apply Wallet</a></h3>
+                        <div id="customer-login" class="collapse customer-content">
+                            <div class="customer-info">
+                                <p class="coupon-text">If you have Balance in your wallet please use it for your purchase.</p>
+                                <form action="/apply-wallet" method="post">
+                                    <div class="row">
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                            <label for="exampleInputEmail1">Balance : <span class="required-f"> <%= user.wallet %></span></label>
+                                            <input type="number" max="<%=user.wallet %>" min="0" class="no-margin" name="amount"  value="<%=user.wallet  %>" default="<%= user.wallet  %>" >
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                           
+                                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             
+
+          <%  } %>
+          <%  } %>
+              
+         
+
+          <% if(typeof wallet == 'undefined'){ %>
+
+                <% if (typeof couponPrice == "undefined") { %>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+
+                    <form action="/apply-coupon" method="post">
+
+                        <div class="customer-box customer-coupon">
+                            <h3 class="font-15 xs-font-13"><i class="icon anm anm-gift-l"></i> Have a coupon? <a href="#have-coupon" class="text-white text-decoration-underline" data-toggle="collapse">Click here to enter your code</a></h3>
+                            <div id="have-coupon" class="collapse coupon-checkout-content">
+                                <div class="discount-coupon">
+                                    <div id="coupon" class="coupon-dec tab-pane active">
+                                        <p class="margin-10px-bottom">Enter your coupon code if you have one.</p>
+                                        <label class="required get" for="coupon-code"><span class="required-f">*</span> Coupon</label>
+                                        <input id="coupon" required="" type="text" class="mb-3" placeholder="enter your coupon code" name="coupon">
+                                        <button class="coupon-btn btn" type="submit">Apply Coupon</button>
+                                    </div>
+
+           
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+               
+
+
+                </div>
+
+                <% } %>
+
+                <%  } %>
+            </div>
+
+           
+
+            <div class="row billing-fields">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                    <div class="create-ac-content bg-light-gray padding-20px-all">
+                        <!-- <form action="/add-address" method="post"  id="addAddressForm">
+                            <fieldset>
+                                <h2 class="login-title mb-3">Billing details</h2>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-firstname">Name<span class="required-f">*</span></label>
+                                        <input name="name" value="" id="input-firstname" type="text">
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-lastname">Phone No <span class="required-f">*</span></label>
+                                        <input name="phone" value="" id="input-lastname" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-email">City<span class="required-f">*</span></label>
+                                        <input name="city" value="" id="input-email" type="text">
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-telephone">landmark<span class="required-f">*</span></label>
+                                        <input name="landmark" value="" id="input-telephone" >
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                        <label for="input-company">Address</label>
+                                       <textarea name="address"  rows="5" form="addAddressForm"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-address-1">pincode <span class="required-f">*</span></label>
+                                        <input name="pincode" value="" id="input-address-1" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                        <label for="input-address-2">City/village/town<span class="required-f">*</span></label>
+                                        <input name="town" value="" id="input-address-2" type="text">
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-city">state<span class="required-f">*</span></label>
+                                        <input name="state" value="" id="input-city" type="text">
+                                    </div>
+                                </div>
+                            
+                            </fieldset>
+
+
+                            <fieldset>
+                                <div class="row">
+                                    <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                                        <button class="btn btn-primary" type="submit">Add</button>
+                                        <button class="btn btn-light">Cancel</button>
+                                     </div>
+                                </div>
+                            </fieldset>
+                        </form> -->
+
+                       
+                        
+                        <h4 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold; font-size: 15px; color: rgb(212, 83, 83); text-transform: capitalize;">select an address</h4>
+
+                        
+           <form action="/checkout" method="post">
+
+                        <div class="row">
+
+
+                                    
+                            <% user.address.forEach((item,index)=>{  %> 
+
+                            <div class="col-md-6">
+                                <div class="address-box" style="border: 1px solid rgb(51, 51, 51);margin-bottom: 12px; padding: 10px; border-radius: 10px; font-size: 12px;">
+
+                                    <label for="<% item.id %>">
+                                   
+
+                                    <div class="manage-address" style="display: flex; flex-direction: column;">
+                                     
+                                       <h5 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-transform: capitalize; font-weight: bold;">addrress <%= index+1 %> </h5>
+
+                                       <b>Name:<%=item.name  %> </b> 
+                                       <b >Mobile:<%=item.mobile %></b>
+                                       <b>Village:<%= item.village%></b>
+                                       <b>Land Mark:<%=item.landmark %></b>
+                                       <b>House name:<%=item.housename %></b>
+                                       <b>city:<%=item.city %></b>
+                                       <b>pincode:<%=item.pincode %></b>
+                                    </div>        
+                                    <input type="radio" value="<%= item.id  %>" name="address" id="<%= item.id  %>" required>
+                                </label>
+                            </div>
+                            </div>
+                            <% }) %> 
+                            </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="your-order-payment">
+                        <div class="your-order">
+                            <h2 class="order-title mb-4">Your Order</h2>
+
+                            <div class="table-responsive-sm order-table"> 
+                                <table class="bg-white table table-bordered table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left">Product Name</th>
+                                            <th>Price</th>           
+                                            <th>Qty</th>
+                                            <th>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% product.forEach((item,index)=>{%>
+                                        <tr>
+                                            <td class="text-left"><%= item.name %> </td>
+                                            <td>₹<%= item.price %> </td>                                         
+                                            <td><%=cart[index].quantity%></td>
+                                            <td>₹<%=item.price * cart[index].quantity%></td>
+                                        </tr>
+                                        <% }) %>                                       
+                                    </tbody>
+                                    <tfoot class="font-weight-600">
+                                        <!-- <tr>
+                                            <td colspan="3" class="text-right">Shipping </td>
+                                            <td>₹ 50</td>
+                                        </tr> -->
+
+                                        <% if (typeof couponPrice == "undefined") { %>
+                                        
+                                        <tr>
+                                            <td colspan="3" class="text-right">Total</td>
+                                            
+                                            <td>$<%=totalPrice %></td>
+                                        </tr>
+                                        <% } %>
+                                        <% if (typeof message !== "undefined") { %>
+                                            <tr>
+                                                <td colspan="3" class="text-right">coupon status</td>
+                                                <td> <b><%=message%> </b></td>
+                                            </tr>
+                                        <% } %>
+
+                                        <% if (typeof couponPrice !== "undefined") { %>
+
+                                            <% if (typeof couponcode !== "undefined") { %>
+
+                                            <input type="text" value="<%= couponcode  %>"  style="height: 0; visibility: hidden;" name="couponcode">
+                                            <% } %>
+                                            <tr>
+                                                <td colspan="3" class="text-right">Discount</td>
+                                              <td>      <b style="color: rgb(108, 214, 143);">₹ <%= cashback  %> </b></td>                                          
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="3" class="text-right">After Applying Coupon</td>
+                                              <td>      <b>₹<%= couponPrice %>  </b></td>                                          
+                                            </tr>
+                                        <% } %>
+                                            <!-- wallet -->      
+                                        <% if (typeof wallet !== "undefined") { %>
+                                            <input type="text" value="<%= amount  %>"  style="height: 0; visibility: hidden;" name="walletUse">                                         
+                                            <tr>
+                                                <td colspan="3" class="text-right">wallet ballance</td>
+                                              <td>      <b style="color: rgb(108, 214, 143);">₹ <%= wallet  %> </b></td>                                          
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="3" class="text-right">you need to pay</td>
+                                              <td>      <b>₹<%= totalPrice %>  </b></td>                                          
+                                            </tr>
+                                        <% } %>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="your-payment">
+                            <h2 class="payment-title mb-3">payment method</h2>
+                            <div class="payment-method">
+                                <div class="payment-accordion">
+                                    <div id="accordion" class="payment-section">
+                                        <div class="card mb-2">
+                                                <div class="card-header" style="display: flex; gap: 10px;">
+                                                    <input type="radio" id="cod" name="payment" value="cod" required>
+                                                    <a class="card-link" data-toggle="collapse" href="#collapseOne">Cash On Delivery </a>
+                                                </div>
+                                            <div id="collapseOne" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="no-margin font-15">payment method in which customers don't pay for mailed goods until they've received and decided to keep them</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-2 collapsed card-link">
+                                                <div class="card-header" style="display: flex; gap: 10px; align-items: center;">
+                                                    <input type="radio" id="online" name="payment" value="online" required>
+                                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo"> online Payment   </a>
+                                                    </div>
+                                            <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="no-margin font-15">Online payment allows you to pay money via the internet. Buyers will use this type of payment when they purchase goods online or offline. They can use different types of online payment methods, including debit/credit cards, wire transfers, net banking, and digital wallets.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-button-payment">
+                                    <button class="btn" type="submit">Place order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <!--End Body Content-->
+    <!--Scoll Top-->
+    <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+    <!--End Scoll Top-->
+     <!-- Including Jquery -->
+     <script src="/assets/js/vendor/jquery-3.3.1.min.js"></script>
+     <script src="/assets/js/vendor/jquery.cookie.js"></script>
+     <script src="/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+     <script src="/assets/js/vendor/wow.min.js"></script>
+     <!-- Including Javascript -->
+     <script src="/assets/js/bootstrap.min.js"></script>
+     <script src="/assets/js/plugins.js"></script>
+     <script src="/assets/js/popper.min.js"></script>
+     <script src="/assets/js/lazysizes.js"></script>
+     <script src="/assets/js/main.js"></script>
+</div>
+</body>
+<!-- belle/cart.html   11 Nov 2019 12:47:01 GMT -->
+</html>

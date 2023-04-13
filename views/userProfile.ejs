@@ -1,0 +1,189 @@
+<%- include('userHead') %>
+
+<body style="background-color: rgba(0, 0, 0, 0.137)">
+  <!--::header part start::-->
+  
+    <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">AbayaStore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+        </button>
+    
+        <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="/shop" class="nav-link">Shop</a></li>
+          
+          <li class="nav-item active"><a href="/profile" class="nav-link"><i class="ri-user-follow-line"></i></a></li>
+  
+          
+          <li class="nav-item active"><a href="/whishlist" class="nav-link"><i class="ri-heart-line"></i></a></li>
+          <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+    
+        </ul>
+        </div>
+      </div>
+      </nav>
+  <div style="margin-top: 5px; display: flex; justify-content: center">
+    <h1
+      style="
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+      "
+    >
+      Profile
+    </h1>
+  </div>
+
+  <div class="container rounded bg-white mt-0 mb-5">
+    <div class="row">
+      <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center">
+          <img
+            class="rounded-circle mt-3"
+            width="150px"
+            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+          /><span class="font-weight-bold"><%=user.name %></span
+          ><span class="text-black-50"><%=user.email %></span><span> </span>
+        </div>
+        
+        <div class="mt-2 text-center">
+          <a href="/orders"
+            ><button class="btn btn-dark profile-button" type="button">
+              Orders
+            </button></a
+          >
+        </div>
+        <div class="mt-2 text-center">
+          <a href="/edit-profile"
+            ><button class="btn btn-dark profile-button" type="button">
+              Edit Profile
+            </button></a
+          >
+        </div>
+        <div class="mt-2 mb-2 text-center">
+          <a href="/add-address"
+            ><button class="btn btn-dark profile-button" type="button">
+              Add Address
+            </button></a
+          >
+        </div>
+      </div>
+      <div class="col-md-9 border-right bg-dark">
+        <!-- <h4 style="margin:20px;">Address</h4> -->
+        <div style="margin: 40px" class="row">
+          <% user.address.forEach((item,index)=>{ %>
+
+          <div class="col-md-4 mt-10">
+            <div class="address-box">
+              <div class="manage-address text-white">
+                <h5>address <%=index+1 %></h5>
+                <b
+                  style="
+                    color: rgba(0, 0, 0, 0.836);
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                  "
+                  >Name : <%=item.name%></b
+                ><br />
+                <b
+                  style="
+                    color: rgba(0, 0, 0, 0.836);
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                  "
+                  >Mobile : <%=item.mobile%></b
+                ><br />
+                <b
+                  style="
+                    color: rgba(0, 0, 0, 0.836);
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                  "
+                  >Village : <%=item.village%></b
+                ><br />
+                <b
+                  style="
+                    color: rgba(0, 0, 0, 0.836);
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                  "
+                  >Land mark : <%=item.landmark%></b
+                ><br />
+                <b
+                  style="
+                    color: rgba(0, 0, 0, 0.836);
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                  "
+                  >House name : <%=item.housename%></b
+                ><br />
+                <b
+                  style="
+                    color: rgba(0, 0, 0, 0.836);
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                  "
+                  >City : <%=item.city%></b
+                ><br />
+                <b
+                  style="
+                    color: rgba(0, 0, 0, 0.836);
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                  "
+                  >Pincode : <%=item.pincode%></b
+                >
+              </div>
+              <div style="display: flex" class="mt-3 text-center">
+
+                <a href="/edit-address/<%=item.id%>"
+                  ><button
+                    style="margin-left: 10px"
+                    class="btn btn-dark profile-button"
+                    type="button"
+                  >
+                    Edit
+                  </button></a
+                >
+                <a href="/delete-address/<%=item.id%>"
+                  ><button
+                    class="btn btn-dark profile-button"
+                    type="button"
+                    onclick="return confirm('Are you sure you want to delete address')"
+                  >
+                    delete
+                  </button></a
+                >
+
+              </div>
+            </div>
+          </div>
+
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background-color: black; margin-top: 143px">.</div>
+
+  <script src="/assestsmalefashion/js/jquery-3.3.1.min.js"></script>
+  <script src="/assestsmalefashion/js/bootstrap.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.nice-select.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.nicescroll.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.magnific-popup.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.countdown.min.js"></script>
+  <script src="/assestsmalefashion/js/jquery.slicknav.js"></script>
+  <script src="/assestsmalefashion/js/mixitup.min.js"></script>
+  <script src="/assestsmalefashion/js/owl.carousel.min.js"></script>
+  <script src="/assestsmalefashion/js/main.js"></script>
+
+  <script src="/assetsuser/js/slick.min.js"></script>
+  <script src="/assetsuser/js/jquery.counterup.min.js"></script>
+  <script src="/assetsuser/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/assetsuser/js/custom.js"></script>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+</body>

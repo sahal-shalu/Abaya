@@ -1,0 +1,29 @@
+<%- include('userHead') %>
+<body>
+  <h1>Items</h1>
+  <ul>
+    <% currentItems.forEach(item => { %>
+      <li><%= item %></li>
+    <% }); %>
+  </ul>
+  <nav>
+    <ul class="pagination">
+      <% if (currentPage > 1) { %>
+        <li><a href="?page=1">First</a></li>
+        <li><a href="?page=<%= currentPage - 1 %>">Previous</a></li>
+      <% } %>
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <% if (i === currentPage) { %>
+          <li class="active"><a href="?page=<%= i %>"><%= i %></a></li>
+        <% } else { %>
+          <li><a href="?page=<%= i %>"><%= i %></a></li>
+        <% } %>
+      <% } %>
+      <% if (currentPage < totalPages) { %>
+        <li><a href="?page=<%= currentPage + 1 %>">Next</a></li>
+        <li><a href="?page=<%= totalPages %>">Last</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<%- include('userHead') %>
+  <body class="goto-here">
+		<div class="py-1 bg-black">
+
+
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+						    <span class="text">+91 8078106286</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+						    <span class="text">abayastore365@gmail.com</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text"></span>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+    </div>
+   
+
+
+	  <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+		  <a class="navbar-brand" href="/">AbayaStore</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="oi oi-menu"></span> Menu
+		  </button>
+  
+		  <div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+			  <li class="nav-item active"><a href="/shop" class="nav-link">Shop</a></li>
+			  <li class="nav-item active"><a href="/contact" class="nav-link">Contact</a></li>
+			  <% if(userName == 'login') { %>
+				<li class="nav-item active"><a href="/login" class="nav-link"><i class="ri-user-add-line"></i></a>
+					<% }else{ %>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-user-follow-line"></i></a>
+						<div class="dropdown-menu" aria-labelledby="dropdown ms-504">
+						  <a class="dropdown-item" href="/profile"><%= userName %></a>
+						  <a class="dropdown-item" href="/logout">Logout</a> 
+						</div>
+					  </li>
+				<% } %> 
+				<li class="nav-item active"><a href="/whishlist" class="nav-link"><i class="ri-heart-line"></i></a></li>
+			  <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+  
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+    <!-- END nav -->
+
+    <section id="home-section" class="hero">
+		  <div class="home-slider js-fullheight owl-carousel">
+	      <div class="slider-item js-fullheight">
+	      	<div class="overlay"></div>
+	        <div class="container-fluid p-0">
+	          <div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+	          
+				  <div class="banner_img" style="margin-bottom: 0px">
+					<img
+					  style="height: 500px; width: 600px"
+					  src="/images/ab 2.jpg"
+					  alt="#"
+					  class="img-fluid"
+					/>
+				  </div>
+		          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text">
+		          		<span class="subheading">Abaya Store</span>
+		          		<div class="horizontal">
+		          			<h3 class="vr" style="background-image: url(images/divider.jpg);"></h3>
+				            <h1 class="mb-4 mt-3">Catch Your Own <br><span>Stylish &amp; Look</span></h1>
+				            <p>Abaya Store is An online Boutique That offers premium quality Abayas of various leading Brands with modern design and Embroidery</p>
+				            
+				            <p><a href="/shop" class="btn btn-black px-5 py-3 mt-3">SHOP NOW</a></p>
+				          </div>
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div>
+
+	      <div class="slider-item js-fullheight">
+	      	<div class="overlay"></div>
+	        <div class="container-fluid p-0">
+	          <div class="row d-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+				<% banner.forEach((item,index)=>{ %>
+					<div class="banner_img" style="margin-bottom: 0px">
+						<img
+						  style="height: 500px; width: 600px"
+						  src="<%= item.image.url%>"
+						  alt="#"
+						  class="img-fluid"
+						/>
+					  </div>
+		          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text">
+		          		<span class="subheading">Abaya Store</span>
+		          		<div class="horizontal">
+		          			<h3 class="vr" style="background-image: url(images/divider.jpg);"><%= item.name %></h3>
+				            <h1 class="mb-4 mt-3">Wide Range of <span> Modest </span> muslim womens clothing at Abaya Store </h1>
+				            <p><%=item.description %></p>
+				            
+				            <p><a href="/shop" class="btn btn-black px-5 py-3 mt-3">SHOP NOW</a></p>
+				          </div>
+		            </div>
+		          </div>
+				  <%} ) %>
+	        	</div>
+	        </div>
+	      </div>
+	    </div>
+    </section>
+
+   
+    <!-- <section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-8 d-flex align-items-stretch">
+    				<div class="img" style="background-image: url(images/about-1.jpg);"></div>
+    			</div>
+    			<div class="col-md-4 py-md-5 ftco-animate">
+    				<div class="text py-3 py-md-5">
+	            <h2 class="mb-4">New Women's Clothing Summer Collection 2019</h2>
+	            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	            <p><a href="#" class="btn btn-white px-4 py-3">Shop now</a></p>
+    				</div>
+    			</div>
+    		</div>
+
+    		<div class="row">
+    			<div class="col-md-5 order-md-last d-flex align-items-stretch">
+    				<div class="img img-2" style="background-image: url(images/about-2.jpg);"></div>
+    			</div>
+    			<div class="col-md-7 py-3 py-md-5 ftco-animate">
+    				<div class="text text-2 py-md-5">
+	            <h2 class="mb-4">New Men's Clothing Summer Collection 2019</h2>
+	            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+	            <p><a href="#" class="btn btn-white px-4 py-3">Shop now</a></p>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section> -->
+
+
+<!-- 
+    <section class="ftco-section bg-light">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h2 class="mb-4">Products</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+          </div>
+        </div>   		
+    	</div>
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-sm col-md-6 col-lg ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-5.jpg" alt="Colorlib Template">
+    						<span class="status">30%</span>
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 px-3">
+    						<h3><a href="#">Floral Jackquard Pullover</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
+		    					</div>
+		    					
+	    					</div>
+    						<p class="bottom-area d-flex px-3">
+    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-sm col-md-6 col-lg ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-6.jpg" alt="Colorlib Template">
+	    					<div class="overlay"></div>
+	    				</a>
+    					<div class="text py-3 px-3">
+    						<h3><a href="#">Floral Jackquard Pullover</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span>$120.00</span></p>
+		    					</div>
+		    					<div class="rating">
+	    							<p class="text-right">
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    							</p>
+	    						</div>
+	    					</div>
+    						<p class="bottom-area d-flex px-3">
+    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-sm col-md-6 col-lg ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-7.jpg" alt="Colorlib Template">
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 px-3">
+    						<h3><a href="#">Floral Jackquard Pullover</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span>$120.00</span></p>
+		    					</div>
+		    					<div class="rating">
+	    							<p class="text-right">
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    							</p>
+	    						</div>
+	    					</div>
+    						<p class="bottom-area d-flex px-3">
+    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-sm col-md-6 col-lg ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-8.jpg" alt="Colorlib Template">
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 px-3">
+    						<h3><a href="#">Floral Jackquard Pullover</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span>$120.00</span></p>
+		    					</div>
+		    					<div class="rating">
+	    							<p class="text-right">
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
+	    							</p>
+	    						</div>
+	    					</div>
+    						<p class="bottom-area d-flex px-3">
+    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>  -->
+
+   
+  
+
+  
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.easing.1.3.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.stellar.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/jquery.animateNumber.min.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
+  <script src="/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="/js/google-map.js"></script>
+  <script src="/js/main.js"></script>
+    
+  </body>
+</html>

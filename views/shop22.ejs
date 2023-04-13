@@ -1,0 +1,114 @@
+
+
+<%-include('userHead') %>
+<link rel="stylesheet"  href="'/singleProducs.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-9CJdfpv7VRezKj1dxORi2xgQ1HiaHu2sCQbJ37g9c0+iKj0pPvRfTjb/Qw0dbTBMIBW8nYfYRjKgG/9B+f3q8A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/">AbayaStore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+      </button>
+  
+      <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item active"><a href="/shop" class="nav-link">Shop</a></li>
+        
+        <li class="nav-item active"><a href="/profile" class="nav-link"><i class="ri-user-follow-line"></i></a></li>
+
+        
+        <li class="nav-item active"><a href="/whishlist" class="nav-link"><i class="ri-heart-line"></i></a></li>
+        <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+  
+      </ul>
+      </div>
+    </div>
+    </nav>
+  
+<div class="container mt-5 mb-5">
+  <div class="row d-flex justify-content-center">
+      <div class="col-md-10">
+          <div class="card">
+              <div class="row">
+                div class="col-md-6" style="float:top;
+                  width: 50%;">
+                      
+                          <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"><%= product.brand %></span>
+                              <h5 class="text-uppercase"> <%= product.name %></h5>
+                              
+                              <div class="price d-flex flex-row align-items-center"> <span class="act-price">MRP</span>
+                                  <div class="ml-2"> <small class="dis-price"><%= product.mrp %></small> <span>₹<%= product.price %> </div>
+                              </div>
+                          </div>
+                          <p class="about"><%= product.description %></p>
+                         
+                          <div class="cart-wishlist" style="justify-content: center;">
+                            <a href="/addto-cart/<%=product._id%>" class="add to cart" style="text-decoration: none; color: black;font-size: xx-large;"><i class="ri-shopping-cart-2-fill"></i></a>
+                            <% if(wish) {%>
+                              <a href="/remove-wishlist/<%= product._id %> "class="add to whishlist" style="color: red;text-decoration: none;font-size: xx-large;"><i class="ri-heart-fill"></i></a>
+                              <% }else{ %>
+                                <a href="/addto-wishlist/<%= product._id %> "class=" add to whishlist" style="color: black;text-decoration: none;font-size: xx-large;"><i class="ri-heart-fill"></i></a> 
+                                <% } %>
+                          </div>
+                      </div>
+                  <div class="col-md-12">
+                      <div class="images p-3">
+                          <div class="text-center p-4"> <img id="main-image" src="<%=product.mainImage.url%>" width="250" /> </div>
+                          <div class="thumbnails text-center">
+                            <% product.sideImage.forEach(item => { %>
+                              <div class="thumbnail" style="display: inline-block; margin-right: 10px;">
+                                <img onclick="change_image(this)" src="<%= item.url %>" width="70">
+                              </div>
+                            <% }) %>
+                            
+                          </div>
+                         
+                  </div>
+                  
+                  <div class="col-md-6" style="float:top;
+                  width: 50%;">
+                      
+                          <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"><%= product.brand %></span>
+                              <h5 class="text-uppercase"> <%= product.name %></h5>
+                              
+                              <div class="price d-flex flex-row align-items-center"> <span class="act-price">MRP</span>
+                                  <div class="ml-2"> <small class="dis-price"><%= product.mrp %></small> <span>₹<%= product.price %> </div>
+                              </div>
+                          </div>
+                          <p class="about"><%= product.description %></p>
+                         
+                          <div class="cart-wishlist" style="justify-content: center;">
+                            <a href="/addto-cart/<%=product._id%>" class="add to cart" style="text-decoration: none; color: black;font-size: xx-large;"><i class="ri-shopping-cart-2-fill"></i></a>
+                            <% if(wish) {%>
+                              <a href="/remove-wishlist/<%= product._id %> "class="add to whishlist" style="color: red;text-decoration: none;font-size: xx-large;"><i class="ri-heart-fill"></i></a>
+                              <% }else{ %>
+                                <a href="/addto-wishlist/<%= product._id %> "class=" add to whishlist" style="color: black;text-decoration: none;font-size: xx-large;"><i class="ri-heart-fill"></i></a> 
+                                <% } %>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</body>
+
+
+<%-include('footer')%>
+
+
+
+<script src="/js/singleProduct.js"></script>
+

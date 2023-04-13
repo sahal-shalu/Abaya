@@ -1,0 +1,85 @@
+
+
+
+<%- include('userHead') %>
+
+<body style="background-color: rgba(0, 0, 0, 0.137);">
+    
+    <!--::header part start::-->
+    <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">AbayaStore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+        </button>
+    
+        <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="/shop" class="nav-link">Shop</a></li>
+          
+          <li class="nav-item active"><a href="/profile" class="nav-link"><i class="ri-user-follow-line"></i></a></li>
+  
+          
+          <li class="nav-item active"><a href="/whishlist" class="nav-link"><i class="ri-heart-line"></i></a></li>
+          <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+    
+        </ul>
+        </div>
+      </div>
+      </nav>
+
+<div style="margin-top:5px; display: flex; justify-content: center;"><h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">Edit Profile</h1>
+</div>
+
+<div class="container rounded bg-white mt-0 mb-5"> 
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center"><img class="rounded-circle mt-3" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><%=user.name %></span><span class="text-black-50"><%=user.email %></span><span> </span></div>
+            
+        </div>
+        <div class="col-md-9 border-right">
+            <div style="margin:25px;" class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <form id="editProfileForm" action="/edit-profile" method="post">
+                    <input type="text" name="_id" value="<%=user._id %>" style="height:0; visibility: hidden;">
+                  <div class="row mt-2">
+                    
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" name="name" class="form-control" value="<%=user.name %>"></div>
+                   
+                    <div class="col-md-6"><label class="labels">Mobail Number</label><input name="mobile" type="text" class="form-control" value="<%=user.mobile %>" maxlength="10"></div>
+                    
+                    </div>
+                    <div style="margin:40px;" class="mb-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save changes</button></div>
+                </form>
+            </div>
+        </div>
+       
+    </div>
+</div>
+</div>
+</div>
+
+<script src="/assestsmalefashion/js/jquery-3.3.1.min.js"></script>
+<script src="/assestsmalefashion/js/bootstrap.min.js"></script>
+<script src="/assestsmalefashion/js/jquery.nice-select.min.js"></script>
+<script src="/assestsmalefashion/js/jquery.nicescroll.min.js"></script>
+<script src="/assestsmalefashion/js/jquery.magnific-popup.min.js"></script>
+<script src="/assestsmalefashion/js/jquery.countdown.min.js"></script>
+<script src="/assestsmalefashion/js/jquery.slicknav.js"></script>
+<script src="/assestsmalefashion/js/mixitup.min.js"></script>
+<script src="/assestsmalefashion/js/owl.carousel.min.js"></script>
+<script src="/assestsmalefashion/js/main.js"></script>
+
+<script src="/assetsuser/js/slick.min.js"></script>
+<script src="/assetsuser/js/jquery.counterup.min.js"></script>
+<script src="/assetsuser/js/jquery.ajaxchimp.min.js"></script>
+<script src="/assetsuser/js/custom.js"></script>
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  </body>

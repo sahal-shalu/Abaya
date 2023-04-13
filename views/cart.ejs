@@ -1,0 +1,435 @@
+
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- belle/cart.html   11 Nov 2019 12:47:01 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>AbayaStore</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<link rel="shortcut icon" href="/assets/images/favicon.png" />
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="/assets/css/plugins.css">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/responsive.css">
+<link rel="stylesheet" href="/css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+</head>
+<body class="page-template belle">
+<div class="pageWrapper">
+	<!--Search Form Drawer-->
+	<div class="search">
+        <div class="search__form">
+            <form class="search-bar__form" action="#">
+                <button class="go-btn search__button" type="submit"><i class="icon anm anm-search-l"></i></button>
+                <input class="search__input" type="search" name="q" value="" placeholder="Search entire store..." aria-label="Search" autocomplete="off">
+            </form>
+            <button type="button" class="search-trigger close-btn"><i class="icon anm anm-times-l"></i></button>
+        </div>
+    </div>
+    <!--End Search Form Drawer-->
+     
+      
+      <!--Mobile Menu-->
+       <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/">AbayaStore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+      </button>
+  
+      <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item active"><a href="/shop" class="nav-link">Shop</a></li>
+        
+        <li class="nav-item active"><a href="/profile" class="nav-link"><i class="ri-user-follow-line"></i></a></li>
+
+        
+        <li class="nav-item active"><a href="/whishlist" class="nav-link"><i class="ri-heart-line"></i></a></li>
+        <li class="nav-item active"><a href="/cart" class="nav-link"> <i class="ri-shopping-cart-fill"></i></a></li>
+  
+      </ul>
+      </div>
+    </div>
+    </nav>
+      <!--End Mobile Menu-->
+    
+    <!--Body Content-->
+    <div id="page-content">
+    
+        
+        <div class="container">
+
+            <% if(!product[0]){ %> 
+                <div class="row">
+                      <div class="empty-container w-100 h-50 d-flex flex-column justify-content-center align-items-center" style="gap:10px">
+                        <img src="/assets/images/empty-wishlist.jfif" height="300px"  alt="">
+                        <h3>Your Cart is empty! <a href="/shop" style="color: rgb(137, 137, 245); font-family: Verdana, Geneva, Tahoma, sans-serif;font-weight: 500;">Add Something --></a></h3>
+                         <p>Looks like you haven't added anything to your cart </p> 
+                      </div>
+                    </div>
+                    <% }else{ %> 
+
+
+        	<div class="row">
+
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8 main-col d-none d-md-block">
+                	
+                	<table>
+                            <thead class="cart__row cart__header">
+                                <tr>
+                                    <th colspan="2" class="text-center">Product</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-right">Total</th>
+                                    <th class="action">&nbsp;</th>
+                                </tr>
+                            </thead>
+
+                    		<tbody>
+
+                                <% product.forEach((item,index)=>{%>
+
+                                    <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                        <td class="cart__image-wrapper cart-flex-item">
+                                            <a href="#"><img class="cart__image" src="<%= item.mainImage.url%>" alt="Elastic Waist Dress - Navy / Small"></a>
+                                        </td>
+                                        <td class="cart__meta small--text-left cart-flex-item">
+                                            <div class="list-view-item__title">
+                                                <a href="#"><%= item.name %>  </a>
+                                            </div>
+                                            
+                                          
+                                        </td>
+                                        <td class="cart__price-wrapper text-center cart-flex-item">
+                                            <span class="money" > ₹<%= item.price %> </span>
+                                          <strike><span class="old-price" id="<%= 'mrp'+item._id %>" style="color: rgb(133, 133, 133);">₹<%= item.mrp %> </span></strike>  
+                                        </td>
+
+                                        
+                                        
+
+                                        <td class="cart__update-wrapper cart-flex-item text-right">
+                                            <div class="cart__qty text-center">
+                                                <div class="qtyField">
+                                                    
+                                                    <button style=" padding:2px 6px; font-weight: bold; width:30px; height:35px; border-radius:0; float:left;" onclick="decQuantity('<%=cart[index].id%>','<%=item.price%>','<%=item.mrp%>')"><i class="icon icon-minus"></i></button>
+                                                    <input style="height: 35px;" class="cart__qty-input qty" type="text" name="updates[]"id="<%='q'+cart[index].id%>"  value="<%=cart[index].quantity%>"  pattern="[0-9]*" readonly>
+                                                    <button style=" padding:2px 6px; font-weight: bold; width:30px; height:35px; border-radius:0; float:left;" onclick="addQuantity('<%=cart[index].id%>','<%=item.price%>','<%=item.mrp%>')"><i class="icon icon-plus"></i></button>
+                                                
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+                                        <td class="text-right small--hide cart-price">
+                                            <div>
+                                                <p class="money" style="font-weight: bold;"  id="<%='price'+cart[index].id%>">₹<%=item.price * cart[index].quantity%></p> 
+                                            </div>
+                                        </td>
+                                        <td class="text-center small--hide"><a href="/remove-cart/<%= item._id %> " class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>
+                                        <b id="<%=item._id%>" style="color: red;">
+                            
+                                          <% if(item.quantity == 0){  %>
+                  
+                                              Out Of Stock
+                                              
+                                          <% }else if(item.quantity < cart[index].quantity){ %>
+                  
+                                              only <%= item.quantity %> left
+                  
+                                              <% } %>
+                  
+                                         </b></td>
+                                    </tr>
+
+
+                                    <% }) %> 
+
+
+                              
+
+
+                               
+                               
+                            </tbody>
+                    		<tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-left"><a href="/shop" class="btn--link cart-continue"><i class="icon icon-arrow-circle-left"></i> Continue shopping</a></td>
+                                    <td colspan="3" class="text-right"><button type="submit" name="update" class="btn--link cart-update"><i class="fa fa-refresh"></i> Update</button></td>
+                                </tr>
+                            </tfoot>
+                    </table>
+                    
+ 
+                      <hr>
+
+            
+                    
+                                 
+               	</div>
+
+                 <div class="col-12 d-block d-md-none">
+                	                  
+                    <table>
+
+                        <thead class="cart__row cart__header">
+                            <tr class="text-center">
+                                <th style="color: white;">image</th>
+                                <th >Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                               
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <% product.forEach((item,index)=>{%>
+
+                                <div style="margin-bottom: 5px;">
+
+                                    <tr class="text-center">
+
+                                        <td style="width: 8px;"><img src="<%= item.mainImage.url  %>" style="height: 50px;" alt=""></td>
+    
+                                        <td style="width: 8px;"><%= item.name  %></td>
+                                        <td>₹<%= item.price  %></td>
+                                        
+                                        <td class="cart__update-wrapper cart-flex-item text-right">
+                                            <div class="cart__qty text-center">
+                                                <div class="qtyField">
+                                                    
+                                                    <button style=" padding:2px 6px; font-weight: bold; width:30px; height:35px; border-radius:0; float:left;" onclick="decQuantity('<%=cart[index].id%>','<%=item.price%>','<%=item.mrp%>')"><i class="icon icon-minus"></i></button>
+                                                    <input style="height: 35px;" class="cart__qty-input qty" type="text" name="updates[]"id="<%='mq'+cart[index].id%>"  value="<%=cart[index].quantity%>"  pattern="[0-9]*" readonly  >
+                                                    <button style=" padding:2px 6px; font-weight: bold; width:30px; height:35px; border-radius:0; float:left;" onclick="addQuantity('<%=cart[index].id%>','<%=item.price%>','<%=item.mrp%>')"><i class="icon icon-plus"></i></button>
+                                                
+                                                </div>
+                                            </div>
+                                        </td>
+    
+                                        <td ><p class="money" style="font-weight: bold;"  id="<%='mobileprice'+cart[index].id%>">₹<%=item.price * cart[index].quantity%></p> </td>
+                                      
+    
+                                    </tr>
+
+                                </div>
+
+                            
+
+
+                                <% }) %>
+
+
+                        </tbody>
+
+                        
+
+
+
+                    </table>
+                  
+                
+                    <hr>
+
+         
+                               
+               </div>
+
+
+                
+
+
+
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
+
+                	<!-- <div class="cart-note">
+                    	<div class="solid-border">
+							<h5><label for="CartSpecialInstructions" class="cart-note__label small--text-center">Add a note to your order</label></h5>
+							<textarea name="note" id="CartSpecialInstructions" class="cart-note__input"></textarea>
+						</div>
+                    </div> -->
+
+
+                    <div class="solid-border text-center ">
+                      <div class="row">
+                          <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Subtotal</strong></span>
+                          <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right" id="totalAmount"><strike style="font-weight: bold; color: rgb(131, 130, 130);">₹<%=totalMrp %></strike></span>
+                      </div>
+                      
+                      <div class="row">
+                          <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Discount</strong></span>
+                          <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money" style="color: rgb(78, 182, 141);" id="totalDiscount">₹<%= totalMrp-totalPrice %></span></span>
+                      </div>
+                      
+                      <div class="row">
+                          <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Total</strong></span>
+                          <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><p class="money" id="totalPrice">₹<%=totalPrice%></p></span>
+                      </div>
+                      
+                      <a href="/product-checkout" class="primary-btn">Proceed to checkout</a>
+                  </div>
+                  
+
+                </div>
+            </div>
+
+            <% } %>
+
+
+        </div>
+        
+    </div>
+    <!--End Body Content-->
+    
+ 
+    <!--Scoll Top-->
+    <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+    <!--End Scoll Top-->
+    
+     <!-- Including Jquery -->
+     <script src="/assets/js/vendor/jquery-3.3.1.min.js"></script>
+     <script src="/assets/js/vendor/jquery.cookie.js"></script>
+     <script src="/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+     <script src="/assets/js/vendor/wow.min.js"></script>
+     <!-- Including Javascript -->
+     <script src="/assets/js/bootstrap.min.js"></script>
+     <script src="/assets/js/plugins.js"></script>
+     <script src="/assets/js/popper.min.js"></script>
+     <script src="/assets/js/lazysizes.js"></script>
+     <script src="/assets/js/main.js"></script>
+
+     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
+     <script>
+
+      let totalPrice=Number('<%=totalPrice%>')
+        let totalMrp=Number('<%=totalMrp%>')
+      
+      
+          
+        function checkQuantity(){
+          axios.post("/check-quantity").then(response=>{
+            if(response?.data?.error){
+              console.log('enter')
+              response.data.outOfQuantity.forEach(item=>{
+                if(item.balanceQuantity<=0){
+                  document.getElementById(item.id).innerHTML="Out Of Stock"
+                }else{
+                  document.getElementById(item.id).innerHTML="Only "+item.balanceQuantity+" stocks left"
+      
+                }
+              })
+            }else{
+              console.log('doesnt entre')
+              window.location.href="/checkout"
+            }
+          })
+        }
+      
+      
+              async function addQuantity(id,price,mrp){
+                  const response=await axios.get('/add-quantity/'+id)
+      
+                  if(response.data.user?.acknowledged){
+                      
+                      var quantity=document.getElementById('q'+id).value
+                      var mobilequantity=document.getElementById('mq'+id).value
+                      var priceTag=document.getElementById('price'+id)
+                      var totalDiscountTag=document.getElementById('totalDiscount')
+                      var totalPriceTag=document.getElementById('totalPrice')
+                      var totalAmountTag=document.getElementById('totalAmount')
+                      var mobileTotal=document.getElementById('mobileprice'+id)
+      
+                      
+      
+                      quantity++
+      
+                      priceTag.innerHTML= '₹'+quantity*price;
+      
+                      mobileTotal.innerHTML= '₹'+quantity*price;
+      
+                      totalMrp=Number(totalMrp)+Number(mrp)
+                      totalPrice=Number(totalPrice)+Number(price)
+      
+                      totalPriceTag.innerHTML=totalPrice;
+                      totalDiscountTag.innerHTML=totalMrp-totalPrice;
+                      totalAmountTag.innerHTML=totalMrp;
+                      totalAmountTag.style.textDecoration='line-through'
+                      totalAmountTag.style.color='grey'
+      
+                      document.getElementById('q'+id).value=quantity;
+                      document.getElementById('mq'+id).value=quantity;
+                      
+      
+                  }
+                  else{
+                      console.log('eror')
+                  }
+      
+              }
+      
+      
+              async function decQuantity(id,price,mrp){
+      
+                  const response=await axios.get('/minus-quantity/'+id)
+      
+                  if(response.data.user?.acknowledged){
+                      var quantity= Number( document.getElementById('q'+id).value);
+                     
+                      if(quantity<=0){
+                          window.location.reload()
+                      }
+      
+                      var priceTag=document.getElementById('price'+id)
+                      var mobileTotal=document.getElementById('mobileprice'+id)
+                      var totalDiscountTag=document.getElementById('totalDiscount')
+                      var totalPriceTag=document.getElementById('totalPrice')
+                      var totalAmountTag=document.getElementById('totalAmount')
+      
+      
+                      quantity--
+      
+      
+                      priceTag.innerHTML= '₹'+quantity*price;
+                      mobileTotal.innerHTML= '₹'+quantity*price;
+      
+                      totalMrp=Number(totalMrp)-Number(mrp)
+                      totalPrice=Number(totalPrice)-Number(price)
+                      totalPriceTag.innerHTML=totalPrice;
+                      totalDiscountTag.innerHTML=totalMrp-totalPrice;
+                      totalAmountTag.innerHTML=totalMrp;
+                      totalAmountTag.style.textDecoration='line-through'
+                      totalAmountTag.style.color='grey'
+      
+      
+                      document.getElementById('q'+id).value=quantity;
+                      document.getElementById('mq'+id).value=quantity;
+                  }else{
+                      window.location.reload()
+                  }
+      
+              }
+      
+           </script>
+
+</div>
+</body>
+
+<!-- belle/cart.html   11 Nov 2019 12:47:01 GMT -->
+</html>

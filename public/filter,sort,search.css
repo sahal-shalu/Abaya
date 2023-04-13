@@ -1,0 +1,100 @@
+/* Styling for the shop sidebar */
+.shop__sidebar {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  /* Styling for the search bar */
+  .shop__sidebar__search {
+    margin-bottom: 20px;
+  }
+  
+  .shop__sidebar__search input[type="search"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .shop__sidebar__search button[type="submit"] {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  /* Styling for the accordion */
+  .shop__sidebar__accordion {
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the category filter */
+  .single_sedebar {
+    margin-bottom: 10px;
+  }
+  
+  .select_option_list {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for the filter and sort dropdowns */
+  .filters-toolbar_input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f2f2f2;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='%23333' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.531 11.055l3.939 3.939c.156.156.364.234.571.234s.415-.078.571-.234l3.939-3.939c.312-.312.312-.819 0-1.131l-1.414-1.414c-.312-.312-.819-.312-1.131 0L10 12.293l-2.828-2.828c-.312-.312-.819-.312-1.131 0l-1.414 1.414c-.312.312-.312.819 0 1.131z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Styling for the filter and sort buttons */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .btn:hover {
+    background-color: #555;
+  }
+  
+  /* Responsive CSS */
+  @media screen and (max-width: 768px) {
+    .shop__sidebar {
+      padding: 10px;
+    }
+  
+    .shop__sidebar__search {
+      margin-bottom: 10px;
+    }
+  
+  }

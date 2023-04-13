@@ -1,0 +1,139 @@
+<%- include('userHead') %>
+
+<body style="background-color: rgba(0, 0, 0, 0.137)">
+  <!--::header part start::-->
+  <header
+    style="background-color: rgb(202, 202, 202)"
+    class="main_menu home_menu"
+  >
+  <nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/">AbayaStore</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+      </button>
+  
+      <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item active"><a href="/shop" class="nav-link">Shop</a></li>
+        
+        <li class="nav-item active"><a href="/profile" class="nav-link"><i class="ri-user-follow-line"></i></a></li>
+
+        
+        <li class="nav-item active"><a href="/whishlist" class="nav-link"><i class="ri-heart-line"></i></a></li>
+        <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+  
+      </ul>
+      </div>
+    </div>
+    </nav>
+  </header>
+
+  <section class="mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 p-b-30">
+          <div class="p-l-25 p-r-30 p-lr-0-lg">
+            <div class="wrap-slick3 flex-sb flex-w">
+              <div class="wrap-slick3-dots"></div>
+              <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+              <div class="slick3 gallery-lb">
+                <div
+                  class="item-slick3"
+                  data-thumb="/product-images/{{ product._id }}.jpg"
+                >
+                  <div class="wrap-pic-w pos-relative">
+                    <img
+                      style="width: 500px; height: 500px"
+                      src="<%=order.orderItems.mainImage.url%>"
+                      alt="IMG-PRODUCT"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-5 p-b-30">
+          <div class="p-r-50 p-t-5 p-lr-0-lg">
+            <h3 class="mtext-105 cl2 js-name-detail p-b-14">
+              <%=order.orderItems.name %>
+            </h3>
+            <h5 class="mtext-105 cl2 js-name-detail p-b-14">
+              <%=order.orderItems.category %>
+            </h5>
+            <h5 class="mtext-106 cl2">RS: <%=order.totalPrice %></h5>
+            <h5 class="mtext-106 cl2">Quantity: <%=order.quantity %></h5>
+
+            <h4 class="mtext-106 cl2">
+              To: <%=order.address.name %> <br />
+              <%=order.address.mobile %> <br />
+              <%=order.address.village %> <br />
+              <%=order.address.housename %> <br />
+              <%=order.address.city %>
+            </h4>
+
+            <h5>Payment Method : <%=order.paymentType %></h5>
+            <h5>OrderStatus : <%=order.status %></h5>
+
+            <% if(order.status == "cancelled"){ %>
+            <h2>Ooppss!!!! You Cancelled Order</h2>
+            <% }else if(order.status == "delivered"){ %>
+             
+            <a
+            href="/return-order/<%=order._id %>" onclick="return confirm('do you want cancel?')"
+            class="btn btn-primary return"
+            >Return Product</a
+          >
+            <h2>Your Order is Delivered!!!</h2>
+
+            <% }else if (order.starus=='returned'){ %>
+
+              
+            <h2>Your Order is returned!!</h2>
+
+            <% }else if(order.status == "shiped"){ %>
+            <h2>Your Order is Shiped!!!</h2>
+            <a
+              href="/cancelorder/<%=order._id %>" onclick="return confirm('do you want cancel?')"
+              class="btn btn-primary cancel"
+              >Cancel Order</a
+            >
+             <% }else if(order.status == "return-progressing"){ %>
+            <h2>Your Order return processing </h2><span>your order amount will be added your wallet after return completed</span>
+            <% }else if(order.status == "Returned"){ %>
+              <span>Your amount will added to your wallet</span>
+  
+            <% }else{ %>
+            <a
+              href="/cancelorder/<%=order._id %>"  onclick="return confirm('do you want cancel?')"
+              class="btn btn-primary cancel"
+              >Cancel Order</a
+            >
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+  <script>
+       function returnOrder(){
+          if(window.confirm("Are you sure ? return this product")){
+            window.location.href="/return-order/<%=order._id%>"
+          }
+        }
+
+  </script>
+</body>
+
