@@ -3,7 +3,7 @@ const mongoose=require('mongoose')
 const { mainModule } = require('process')
 const dbConnect=()=>{
     mongoose.set('strictQuery',true)
-    mongoose.connect('mongodb://127.0.0.1:27017/AbayaStore')
+    mongoose.connect('mongodb+srv://sahalshalu:minnu5426@cluster0.vzrzb2t.mongodb.net/?retryWrites=true&w=majority')
     .then(()=>{
         console.log('connected')
     })
